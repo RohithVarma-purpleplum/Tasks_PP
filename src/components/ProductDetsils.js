@@ -5,7 +5,7 @@ import { CaretUpOutlined, CaretDownOutlined, DeleteOutlined } from '@ant-design/
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Details = ({ productId, onBack }) => {
+const Details = ({ productId ,onBack}) => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
@@ -54,9 +54,7 @@ const Details = ({ productId, onBack }) => {
   const handleRemoveFromCart = (id,name) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
     toast.error(`${name} removed from cart!`);
-
   };
-
   const handleChangeQuantity = (id, type) => {
     setCartItems(prevItems => 
       prevItems.map(item => 
@@ -66,7 +64,6 @@ const Details = ({ productId, onBack }) => {
       )
     );
   };
-
   const renderReviews = () => {
     if (!product.reviews || product.reviews.length === 0) {
       return <p>No reviews available.</p>;
@@ -80,7 +77,6 @@ const Details = ({ productId, onBack }) => {
       </div>
     ));
   }; 
-
   const renderCartItems = () => {
     return cartItems.map(item => (
       <div key={item.id} className='items'>
@@ -105,11 +101,10 @@ const Details = ({ productId, onBack }) => {
           onClick={() =>
             handleRemoveFromCart(item.id, item.title)} 
           style={{ border: 'none' }} 
-        />
+        />                          
       </div>
     ));
   };
-
   if (loading) {
     return <p>Loading Card Details...</p>;
   }
@@ -117,20 +112,15 @@ const Details = ({ productId, onBack }) => {
   if (!product) {
     return <p>No product details found.</p>;
   }
-  console.log("link")       
-
-  return (
     <div style={{ padding: '20px', height: '70vh', overflow: 'hidden' }}>
       <Button onClick={onBack} style={{ marginBottom: '10px' }}>
-        Back to Products
+        Back to Products  
       </Button>
       <div style={{ display: 'flex', gap: '30px' }}>
         <div>
           <img
-            src={product.thumbnail}
-            alt={product.title}
-            style={{
-              width: '500px', height: '500px', objectFit: 'cover',
+            src={product.thumbnail}  alt={product.title}    
+            style={{  width: '500px', height: '500px', objectFit: 'cover',
               borderRadius: '8px', backgroundColor: 'grey', marginTop: '10px'
             }}
           />
@@ -143,9 +133,8 @@ const Details = ({ productId, onBack }) => {
             {showInfo ? 'Hide Info' : 'Show Info'}
           </Button>
           <Button className='btn-2' type="button" onClick={() => setShowReview(!showReview)}>
-            {showReview ? 'Hide Reviews' : 'Show Reviews'}
+            {showReview ? 'Hide Reviews': 'Show Reviews'}
           </Button>
-
           {showInfo && (
             <div>
               <p><strong>Stock:</strong> {product.stock}</p>
